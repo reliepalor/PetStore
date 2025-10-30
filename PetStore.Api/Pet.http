@@ -1,0 +1,80 @@
+// 🐾 PETS API
+
+### Get all pets
+GET http://localhost:5036/pets
+
+###
+
+### Get pet by ID
+GET http://localhost:5036/pets/2
+
+###
+
+### Create new pet
+POST http://localhost:5036/pets
+Content-Type: application/json
+
+{
+    "name": "Jaya",
+    "type": "Cat",
+    "price": 10.21,
+    "birthDate": "2024-12-30"
+}
+
+###
+
+### Verify pets
+GET http://localhost:5036/pets
+
+###
+PUT http://localhost:5036/pets/2
+Content-Type: application/json
+
+{
+    "name": "BuChu",
+    "type": "Cat",
+    "price": 10.32,
+    "birthDate": "2025-10-03"
+}
+
+###
+DELETE http://localhost:5036/pets/3
+// 🍖 FOODS API
+
+### Get all foods
+GET http://localhost:5036/foods
+
+###
+
+### Get food by ID
+GET http://localhost:5036/foods/2
+
+###
+
+### Create new food
+POST http://localhost:5036/foods
+Content-Type: application/json
+
+{
+    "foodName": "CornBeef",
+    "foodType": "Meat",
+    "foodPrice": 12.22
+}
+
+###
+
+### Verify foods
+GET http://localhost:5036/foods
+
+###
+Put http://localhost:5036/foods/2
+Content-Type: application/json
+
+{
+    "foodName": "Cow Milk",
+    "foodType": "Drinks",
+    "foodPrice": 15.11
+}
+
+###
+DELETE http://localhost:5036/foods/2

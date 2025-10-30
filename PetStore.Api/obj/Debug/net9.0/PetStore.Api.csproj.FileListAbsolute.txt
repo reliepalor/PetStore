@@ -25,3 +25,4 @@ C:\Users\63936\OneDrive - Personal\Documents\c#\PetStore\PetStore.Api\obj\Debug\
 C:\Users\63936\OneDrive - Personal\Documents\c#\PetStore\PetStore.Api\obj\Debug\net9.0\PetStore.Api.pdb
 C:\Users\63936\OneDrive - Personal\Documents\c#\PetStore\PetStore.Api\obj\Debug\net9.0\PetStore.Api.genruntimeconfig.cache
 C:\Users\63936\OneDrive - Personal\Documents\c#\PetStore\PetStore.Api\obj\Debug\net9.0\ref\PetStore.Api.dll
+C:\Users\63936\OneDrive - Personal\Documents\c#\PetStore\PetStore.Api\obj\Debug\net9.0\PetStore.Api.sourcelink.json
