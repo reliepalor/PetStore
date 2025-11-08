@@ -14,5 +14,5 @@ var app = builder.Build();
 
 app.MapPetEndpoints();
 app.MapFoodEndpoints();
-
+app.MigrateDb();
 app.Run();

@@ -7,6 +7,12 @@ public class FoodStoreContext(DbContextOptions<FoodStoreContext> options)
     : DbContext(options)
 {
    public DbSet<Food> Foods => Set<Food>();
-   public DbSet<FoodType> Types => Set<FoodType>();
+    public DbSet<FoodType> Types => Set<FoodType>();
   
+  protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<FoodType>().ToTable("FoodTypes");
+
+        base.OnModelCreating(modelBuilder);    
+    }
 }

@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PetStore.Api.Data.Migrations
+namespace PetStore.Api.Migrations
 {
     /// <inheritdoc />
     public partial class FoodCreate : Migration
@@ -11,7 +11,7 @@ namespace PetStore.Api.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Types",
+                name: "FoodTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -20,7 +20,7 @@ namespace PetStore.Api.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Types", x => x.Id);
+                    table.PrimaryKey("PK_FoodTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -37,9 +37,9 @@ namespace PetStore.Api.Data.Migrations
                 {
                     table.PrimaryKey("PK_Foods", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Foods_Types_FoodTypeId",
+                        name: "FK_Foods_FoodTypes_FoodTypeId",
                         column: x => x.FoodTypeId,
-                        principalTable: "Types",
+                        principalTable: "FoodTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -57,7 +57,7 @@ namespace PetStore.Api.Data.Migrations
                 name: "Foods");
 
             migrationBuilder.DropTable(
-                name: "Types");
+                name: "FoodTypes");
         }
     }
 }

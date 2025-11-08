@@ -6,7 +6,7 @@ using PetStore.Api.Data;
 
 #nullable disable
 
-namespace PetStore.Api.Data.Migrations
+namespace PetStore.Api.Migrations
 {
     [DbContext(typeof(FoodStoreContext))]
     partial class FoodStoreContextModelSnapshot : ModelSnapshot
@@ -51,18 +51,18 @@ namespace PetStore.Api.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Types");
+                    b.ToTable("FoodTypes", (string)null);
                 });
 
             modelBuilder.Entity("PetStore.Api.Entities.Foods.Food", b =>
                 {
-                    b.HasOne("PetStore.Api.Entities.Foods.FoodType", "Type")
+                    b.HasOne("PetStore.Api.Entities.Foods.FoodType", "FoodTypes")
                         .WithMany()
                         .HasForeignKey("FoodTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Type");
+                    b.Navigation("FoodTypes");
                 });
 #pragma warning restore 612, 618
         }
