@@ -1,5 +1,8 @@
 using System;
+using Microsoft.EntityFrameworkCore;
 using PetStore.Api.Dtos;
+using PetStore.Api.Data;
+using PetStore.Api.Entities.Foods;
 
 namespace PetStore.Api.Endpoints.Foods;
 
@@ -27,16 +30,18 @@ public static class FoodEndpoints
             .WithName(GetFoodEndPointName);
 
         // POST /foods
-        group.MapPost("/", (CreateFoodDto newFood) =>
+        group.MapPost("/", (CreateFoodDto newFood, FoodStoreContext DbContext) =>
         {
-            FoodDto food = new(
-                foods.Count + 1,
-                newFood.FoodName,
-                newFood.FoodType,
-                newFood.FoodPrice
-            );
+            Food food = new()
+            {
+                Name = newFood.FoodName,
+                FoodTypes = DbContext.FoodTypes.Find(newFood.FoodTypeId),
+                FoodTypeId = newFood.FoodTypeId,
+                Price = newFood.FoodPrice
+            };
 
-            foods.Add(food);
+            DbContext.Foods.Add(food);
+            DbContext.SaveChanges();
 
             return Results.CreatedAtRoute(GetFoodEndPointName, new { id = food.Id }, food);
         }).WithParameterValidation();

@@ -3,7 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace PetStore.Api.Data.Migrations
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
+namespace PetStore.Api.Data.Migrations.Pets
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -44,6 +46,28 @@ namespace PetStore.Api.Data.Migrations
                         principalTable: "Types",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Types",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Dog" },
+                    { 2, "Cat" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Pets",
+                columns: new[] { "Id", "BirthDate", "Name", "PetTypeId", "Price" },
+                values: new object[,]
+                {
+                    { 1, new DateOnly(2024, 10, 1), "Chuchi", 2, 200.50m },
+                    { 2, new DateOnly(2024, 9, 15), "Chuchu", 2, 180.75m },
+                    { 3, new DateOnly(2023, 11, 5), "Vuevue", 2, 350.00m },
+                    { 4, new DateOnly(2025, 1, 20), "Ungang", 2, 90.00m },
+                    { 5, new DateOnly(2024, 12, 30), "Jaya", 1, 215.25m },
+                    { 6, new DateOnly(2023, 8, 10), "Trisha", 1, 120.10m }
                 });
 
             migrationBuilder.CreateIndex(

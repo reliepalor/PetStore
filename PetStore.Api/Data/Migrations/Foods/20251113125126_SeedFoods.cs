@@ -2,10 +2,12 @@
 
 #nullable disable
 
-namespace PetStore.Api.Migrations
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
+namespace PetStore.Api.Data.Migrations.Foods
 {
     /// <inheritdoc />
-    public partial class FoodCreate : Migration
+    public partial class SeedFoods : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,6 +44,30 @@ namespace PetStore.Api.Migrations
                         principalTable: "FoodTypes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "FoodTypes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Meat" },
+                    { 2, "Fish" },
+                    { 3, "Snack" },
+                    { 4, "Drink" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Foods",
+                columns: new[] { "Id", "FoodTypeId", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 1, 1, "Beef Biscuits", 10.50m },
+                    { 2, 1, "Chicken Nuggets", 8.75m },
+                    { 3, 2, "Thin Tuna Cuts", 5.25m },
+                    { 4, 3, "Apple Crunch", 6.00m },
+                    { 5, 4, "Goat Milk", 12.99m },
+                    { 6, 2, "Fish Jerky", 9.40m }
                 });
 
             migrationBuilder.CreateIndex(
