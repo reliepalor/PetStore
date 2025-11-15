@@ -43,7 +43,14 @@ public static class FoodEndpoints
             DbContext.Foods.Add(food);
             DbContext.SaveChanges();
 
-            return Results.CreatedAtRoute(GetFoodEndPointName, new { id = food.Id }, food);
+            FoodDto foodDto = new(
+                food.Id,
+                food.Name,
+                food.FoodTypes!.Name,
+                food.Price
+            );
+
+            return Results.CreatedAtRoute(GetFoodEndPointName, new { id = food.Id }, foodDto);
         }).WithParameterValidation();
         //PUT /foods
         group.MapPut("/{id}", (int id, UpdateFoodDto updatedFood) =>

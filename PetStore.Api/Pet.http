@@ -15,9 +15,9 @@ POST http://localhost:5036/pets
 Content-Type: application/json
 
 {
-    "name" : "Ungang",
-    "petType": "Dog",
-    "price": 1.21,
+    "name" : "tanjiro",
+    "PetTypeId": 2,
+    "price": 5.50,
     "birthDate": "2024-12-30"
 }
 
@@ -38,7 +38,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:5036/pets/4
+DELETE http://localhost:5036/pets/7
 // 🍖 FOODS API
 
 ### Get all foods
@@ -57,7 +57,7 @@ Content-Type: application/json
 
 {
     "foodName": "CornBeef",
-    "foodType": "Meat",
+    "FoodTypeId": 1,
     "foodPrice": 12.22
 }
 

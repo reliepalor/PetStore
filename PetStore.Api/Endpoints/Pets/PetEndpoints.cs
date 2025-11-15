@@ -2,6 +2,7 @@ using System;
 using PetStore.Api.Data;
 using PetStore.Api.Dtos;
 using PetStore.Api.Entities.Pets;
+using PetStore.Api.Mapping;
 
 namespace PetStore.Api.Endpoints.Pets;
 
@@ -29,25 +30,21 @@ public static class PetEndpoints
         })
             .WithName(GetPetEndPointName);
 
-        // POST /pets   
-        _ = group.MapPost("/", (CreatePetDto newPet, PetStoreContext DbContext) =>
+        // POST /pets
+        group.MapPost("/", (CreatePetDto newPet, PetStoreContext DbContext) =>
         {
-
-            Pet pet = new()
-            {
-                Name = newPet.Name,
-                Type = DbContext.Types.Find(newPet.PetTypeId),
-                PetTypeId = newPet.PetTypeId,
-                Price = newPet.Price,
-                BirthDate = newPet.BirthDate
-            };
+            Pet pet = newPet.ToEntity();
+            pet.Type = DbContext.Types.Find(newPet.PetTypeId);
 
             DbContext.Pets.Add(pet);
+            DbContext.SaveChanges();
 
-            return Results.CreatedAtRoute(GetPetEndPointName, new { id = pet.Id }, pet);
+            return Results.CreatedAtRoute(GetPetEndPointName, new { id = pet.Id }, pet.ToDto());
         }).WithParameterValidation();
+
+        
         //PUT /pets
-        group.MapPut("/{id}", (int id, UpdatePetDto updatedPet) =>
+        group.MapPut("/{id}", (int id, UpdatePetDto updatedPet) =>  
         {
             var index = pets.FindIndex(pet => pet.Id == id);
 
